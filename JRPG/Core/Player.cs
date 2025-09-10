@@ -7,15 +7,20 @@ using System.Threading.Tasks;
 
 namespace JRPG.Core
 {
-    internal class Player
+    internal class Player : IDamageable
     {
         // Player Damage Cap
         const int maxPossibleDamage = 999;
 
         // <--- Stats --->
+        public int MaxHealth { get { return maxHealth; } }
+        public int CurrentHealth { get { return maxHealth; } }
+        public bool IsAlive => CurrentHealth > 0;
+
         protected int maxHealth = 100;
         protected int currentHealth;
         protected int attack = 1;
+
 
         public Player()
         {

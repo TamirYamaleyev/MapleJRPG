@@ -1,4 +1,6 @@
 ﻿using JRPG.Core;
+using NAudio.Wave;
+using System.Media;
 
 Player p1 = new Player();
 Enemy sheep = new Enemy();

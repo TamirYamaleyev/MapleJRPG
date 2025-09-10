@@ -8,8 +8,23 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="UI\" />
+    <None Remove="choir.mp3" />
+    <None Remove="sound.wav" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="choir.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="States\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NAudio" Version="2.2.1" />
+    <PackageReference Include="System.Windows.Extensions" Version="9.0.9" />
   </ItemGroup>
 
 </Project>
