@@ -1,4 +1,5 @@
 ﻿using JRPG.Core;
+using JRPG.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +11,9 @@ namespace JRPG.Systems
 {
     internal class CombatManager
     {
-        List<Player> players = new List<Player>();
-        List<Enemy> enemies = new List<Enemy>();
-        List<IDamageable> combatants = new List<IDamageable>();
+        public static List<Player> players = new List<Player>();
+        public static List<Enemy> enemies = new List<Enemy>();
+        private List<IDamageable> combatants = new List<IDamageable>();
 
         public bool battleNotOver = false;
         public int currentRound = 1;
@@ -45,9 +46,9 @@ namespace JRPG.Systems
                         continue;
                     }
 
-                    if (combatants[i] is Player)
+                    if (combatants[i] is Player p)
                     {
-                        // Call UI for Player turn
+                        BattleAction b = InputHandler.DisplayCombatOptions(p);
                     }
                     else if (combatants[i] is Enemy)
                     {
@@ -90,6 +91,28 @@ namespace JRPG.Systems
         {
             battleNotOver = false;
             Console.WriteLine("Your party has been wiped out...");
+        }
+
+        public void ExecuteAction(BattleAction action)
+        {
+            switch(action.Type)
+            {
+                case BattleAction.ActionType.Attack:
+                    action.Actor.NormalAttack(action.Targets[0]);
+                    break;
+                case BattleAction.ActionType.Skill:
+                    // Use skill ---
+                    break;
+                case BattleAction.ActionType.Item:
+                    // Use item ---
+                    break;
+                case BattleAction.ActionType.Defend:
+                    // Defend ---
+                    break;
+                case BattleAction.ActionType.Flee:
+                    // Flee ---
+                    break;
+            }
         }
     }
 }

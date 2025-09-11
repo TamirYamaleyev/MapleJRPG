@@ -47,13 +47,12 @@ namespace JRPG.Core
             currentHealth += amount;
         }
 
-        // To move
-        public void NormalAttack(Enemy targetEnemy)
+        public void NormalAttack(IDamageable target)
         {
-            targetEnemy.TakeDamage(CalculateDamage());
+            target.TakeDamage(CalculateDamage());
         }
 
-        // To move
+        // To move?
         public int CalculateDamage()
         {
             return Math.Clamp(Helper.CalculateRandomRange(attack), 1, damageCap);

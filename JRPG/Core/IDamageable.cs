@@ -13,5 +13,6 @@ namespace JRPG.Core
         int CurrentHealth { get; }
         void TakeDamage(int damage);
         void Heal(int amount);
+        void NormalAttack(IDamageable target);
     }
 }

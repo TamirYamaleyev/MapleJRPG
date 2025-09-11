@@ -10,6 +10,7 @@ namespace JRPG.Core
     internal class Enemy : IDamageable
     {
         // <--- Stats --->
+        public string Name { get; }
         public int MaxHealth { get { return maxHealth; } }
         public int CurrentHealth { get { return currentHealth; } }
         public bool IsAlive => CurrentHealth > 0;
@@ -18,8 +19,9 @@ namespace JRPG.Core
         protected int currentHealth;
         protected int damage;
 
-        public Enemy()
+        public Enemy(string name)
         {
+            Name = name;
             maxHealth = Helper.CalculateRandomRange(maxHealth);
             currentHealth = maxHealth;
         }
@@ -31,6 +33,10 @@ namespace JRPG.Core
         public void Heal(int amount)
         {
             currentHealth += amount;
+        }
+        public void NormalAttack(IDamageable target)
+        {
+            target.TakeDamage(damage);
         }
     }
 }
