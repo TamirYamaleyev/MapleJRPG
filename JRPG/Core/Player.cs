@@ -10,7 +10,7 @@ namespace JRPG.Core
     internal class Player : IDamageable
     {
         // Player Damage Cap
-        const int maxPossibleDamage = 999;
+        const int damageCap = 999;
 
         // <--- Stats --->
         public int MaxHealth { get { return maxHealth; } }
@@ -21,10 +21,20 @@ namespace JRPG.Core
         protected int currentHealth;
         protected int attack = 1;
 
+        private int startingStatValues = 4;
+        protected int strength;
+        protected int dexterity;
+        protected int intelligence;
+        protected int luck;
+
 
         public Player()
         {
             currentHealth = 100;
+            strength = startingStatValues;
+            dexterity = startingStatValues;
+            intelligence = startingStatValues;
+            luck = startingStatValues;
         }
 
         public void TakeDamage(int damage)
@@ -46,7 +56,12 @@ namespace JRPG.Core
         // To move
         public int CalculateDamage()
         {
-            return Math.Clamp(Helper.CalculateRandomRange(attack), 1, maxPossibleDamage);
+            return Math.Clamp(Helper.CalculateRandomRange(attack), 1, damageCap);
+        }
+
+        public void increaseStat()
+        {
+
         }
     }
 }
