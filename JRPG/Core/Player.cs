@@ -19,6 +19,9 @@ namespace JRPG.Core
         public int CurrentMana {  get { return currentMana; } }
         public bool IsAlive => CurrentHealth > 0;
 
+        public string Name { get { return Name; } }
+        protected string name;
+
         protected int maxHealth = 100;
         protected int currentHealth;
         protected int maxMana = 100;
@@ -32,8 +35,9 @@ namespace JRPG.Core
         protected int luck;
 
 
-        public Player()
+        public Player(string name)
         {
+            this.name = name;
             currentHealth = maxHealth;
             currentMana = maxMana;
             strength = startingStatValues;
