@@ -15,10 +15,14 @@ namespace JRPG.Core
         // <--- Stats --->
         public int MaxHealth { get { return maxHealth; } }
         public int CurrentHealth { get { return maxHealth; } }
+        public int MaxMana { get { return maxMana; } }
+        public int CurrentMana {  get { return currentMana; } }
         public bool IsAlive => CurrentHealth > 0;
 
         protected int maxHealth = 100;
         protected int currentHealth;
+        protected int maxMana = 100;
+        protected int currentMana;
         protected int attack = 1;
 
         private int startingStatValues = 4;
@@ -30,7 +34,8 @@ namespace JRPG.Core
 
         public Player()
         {
-            currentHealth = 100;
+            currentHealth = maxHealth;
+            currentMana = maxMana;
             strength = startingStatValues;
             dexterity = startingStatValues;
             intelligence = startingStatValues;

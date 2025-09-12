@@ -8,5 +8,6 @@ namespace JRPG.UI
 {
     internal class ConsoleRenderer
     {
+
     }
 }
