@@ -30,7 +30,14 @@ namespace JRPG.UI
                         // dont forget to validate if action is possible
                         case 1:
                             return new BattleAction(player, BattleAction.ActionType.Attack, ChooseOneEnemy());
-                        case 2: 
+                        case 2:
+                            return new BattleAction(player, BattleAction.ActionType.Skill);
+                        case 3:
+                            return new BattleAction(player, BattleAction.ActionType.Item);
+                        case 4:
+                            return new BattleAction(player, BattleAction.ActionType.Defend);
+                        case 5:
+                            return new BattleAction(player, BattleAction.ActionType.Flee);
 
                         default:
                             Console.Clear();

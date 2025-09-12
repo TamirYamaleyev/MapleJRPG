@@ -8,10 +8,12 @@ namespace JRPG.Utils
 {
     internal class Helper
     {
+        private static float minRangeMultiplier = 0.75f;
+        private static float maxRangeMultiplier = 1.25f;
         public static int CalculateRandomRange(int value)
         {
             Random random = new Random();
-            return random.Next((int)(value * 0.75), (int)(value * 1.25));
+            return random.Next((int)(value * minRangeMultiplier), (int)(value * maxRangeMultiplier));
         }
     }
 }
