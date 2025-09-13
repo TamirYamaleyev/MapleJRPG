@@ -19,7 +19,7 @@ namespace JRPG.UI
         public static BattleAction DisplayCombatOptions(Player player, int currentRound)
         {
             string[] options = { "Attack", "Skill", "Item", "Defend" };
-            string[] tooltips = { $"Attack Value: {player.Attack}", "(Class Skills)", "(Potions, etc)", "Take half damage for a turn" };
+            string[] tooltips = { $"Attack Range: {Math.Floor(player.Attack * Player.minRangeMultiplier)} ~ {Math.Ceiling(player.Attack * Player.maxRangeMultiplier)}", "(Class Skills)", "(Potions, etc)", "Take half damage for a turn" };
             int choice = Helper.ChoiceSelection($"{player.Name}, choose your action:", options, tooltips);
 
             switch (choice)

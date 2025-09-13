@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JRPG.Core;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,12 +9,12 @@ namespace JRPG.Utils
 {
     internal class Helper
     {
-        private static float minRangeMultiplier = 0.75f;
-        private static float maxRangeMultiplier = 1.25f;
+
         public static int CalculateRandomRange(int value)
         {
             Random random = new Random();
-            return random.Next((int)(value * minRangeMultiplier), (int)(value * maxRangeMultiplier));
+            int damage = random.Next((int)Math.Floor(value * Player.minRangeMultiplier), (int)Math.Ceiling(value * Player.maxRangeMultiplier));
+            return Math.Clamp(damage, 1, Player.damageCap);
         }
 
         public static int ChoiceSelection(string prompt, string[] options, string[]? tooltips = null)

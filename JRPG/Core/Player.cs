@@ -10,7 +10,10 @@ namespace JRPG.Core
     internal class Player : IDamageable
     {
         // Player Damage Cap
-        const int damageCap = 999;
+        public const int damageCap = 999;
+
+        public const float minRangeMultiplier = 0.75f;
+        public const float maxRangeMultiplier = 1.25f;
 
         // <--- Stats --->
         public int MaxHealth { get { return maxHealth; } }
@@ -27,7 +30,7 @@ namespace JRPG.Core
         protected int currentHealth;
         protected int maxMana = 100;
         protected int currentMana;
-        protected int attack = 1;
+        protected int attack = 3;
 
         private int startingStatValues = 4;
         protected int strength;
