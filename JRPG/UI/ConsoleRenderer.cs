@@ -29,18 +29,22 @@ namespace JRPG.UI
         {
             Console.WriteLine(message);
         }
-
-        public static void ShowMainMenu()
+        public static void ShowActionResult(BattleAction action, int resultValue)
         {
-            Console.WriteLine("\nChoose Combat Option: \n1) Attack \n2) Skill \n3) Item \n4) Defend \n5) Flee");
-        }
-
-        public static void ShowTargets(List<Enemy> enemies)
-        {
-            Console.WriteLine("Choose a target:");
-            for (int i = 0; i < enemies.Count; i++)
+            switch (action.Type)
             {
-                Console.WriteLine($"{i}) {enemies[i].Name} (HP: {enemies[i].CurrentHealth}/{enemies[i].MaxHealth}");
+                case BattleAction.ActionType.Attack:
+                    Console.WriteLine($"{action.Actor.Name} attacks {action.Targets[0].Name} for {resultValue} damage");
+                    break;
+                case BattleAction.ActionType.Skill:
+                    Console.WriteLine($"PLACEHOLDER");
+                    break;
+                case BattleAction.ActionType.Item:
+                    Console.WriteLine($"PLACEHOLDER");
+                    break;
+                case BattleAction.ActionType.Defend:
+                    Console.WriteLine($"{action.Actor} Defends");
+                    break;
             }
         }
     }
