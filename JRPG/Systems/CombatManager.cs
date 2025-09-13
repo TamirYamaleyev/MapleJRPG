@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace JRPG.Systems
 {
@@ -16,7 +17,7 @@ namespace JRPG.Systems
         private List<IDamageable> combatants = new List<IDamageable>();
 
         public bool battleNotOver = false;
-        public int currentRound = 1;
+        int currentRound = Round.Instance.CurrentRound;
 
         public void InitializeCombatants(Player[] playerArray, Enemy[] enemyArray)
         {
@@ -37,6 +38,8 @@ namespace JRPG.Systems
             battleNotOver = true;
             while (battleNotOver)
             {
+                ConsoleRenderer.ShowBattleStatus(players, enemies, currentRound);
+
                 for (int i = combatants.Count - 1; i >= 0; i--)
                 {
                     if (!combatants[i].IsAlive)
@@ -48,7 +51,9 @@ namespace JRPG.Systems
 
                     if (combatants[i] is Player p)
                     {
-                        BattleAction b = InputHandler.DisplayCombatOptions(p);
+                        BattleAction action = InputHandler.DisplayCombatOptions(p, currentRound);
+                        ExecuteAction(action);
+                        ConsoleRenderer.ShowBattleStatus(players, enemies, currentRound);
                     }
                     else if (combatants[i] is Enemy)
                     {
@@ -85,12 +90,12 @@ namespace JRPG.Systems
         private void CombatWin()
         {
             battleNotOver = false;
-            Console.WriteLine("Your party wins the battle!");
+            ConsoleRenderer.ShowCombatMessage("Your party wins the battle!");
         }
         private void CombatLoss()
         {
             battleNotOver = false;
-            Console.WriteLine("Your party has been wiped out...");
+            ConsoleRenderer.ShowCombatMessage("Your party has been wiped out...");
         }
 
         public void ExecuteAction(BattleAction action)
@@ -98,7 +103,8 @@ namespace JRPG.Systems
             switch(action.Type)
             {
                 case BattleAction.ActionType.Attack:
-                    action.Actor.NormalAttack(action.Targets[0]);
+                    int damage = action.Actor.NormalAttack(action.Targets[0]);
+                    action.ResultValue = damage;
                     break;
                 case BattleAction.ActionType.Skill:
                     // Use skill ---
@@ -109,10 +115,9 @@ namespace JRPG.Systems
                 case BattleAction.ActionType.Defend:
                     // Defend ---
                     break;
-                case BattleAction.ActionType.Flee:
-                    // Flee ---
-                    break;
             }
+            ConsoleRenderer.ShowActionResult(action, action.ResultValue);
+
         }
     }
 }
