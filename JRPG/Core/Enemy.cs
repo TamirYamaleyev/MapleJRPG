@@ -34,9 +34,10 @@ namespace JRPG.Core
         {
             currentHealth += amount;
         }
-        public void NormalAttack(IDamageable target)
+        public int NormalAttack(IDamageable target)
         {
             target.TakeDamage(damage);
+            return damage;
         }
     }
 }

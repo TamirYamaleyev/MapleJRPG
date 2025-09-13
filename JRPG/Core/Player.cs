@@ -17,9 +17,10 @@ namespace JRPG.Core
         public int CurrentHealth { get { return maxHealth; } }
         public int MaxMana { get { return maxMana; } }
         public int CurrentMana {  get { return currentMana; } }
+        public int Attack {  get { return attack; } }
         public bool IsAlive => CurrentHealth > 0;
 
-        public string Name { get { return Name; } }
+        public string Name { get { return name; } }
         protected string name;
 
         protected int maxHealth = 100;
@@ -56,9 +57,11 @@ namespace JRPG.Core
             currentHealth += amount;
         }
 
-        public void NormalAttack(IDamageable target)
+        public int NormalAttack(IDamageable target)
         {
-            target.TakeDamage(CalculateDamage());
+            int damage = CalculateDamage();
+            target.TakeDamage(damage);
+            return damage;
         }
 
         // To move?
