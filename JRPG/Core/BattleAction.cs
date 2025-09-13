@@ -14,11 +14,11 @@ namespace JRPG.Core
             Skill,
             Item,
             Defend,
-            Flee
         }
         public IDamageable Actor { get; set; }
         public ActionType Type { get; set; }
         public List<IDamageable> Targets { get; private set; } = new();
+        public int ResultValue { get; set; }
 
         public void SetSingleTarget(IDamageable target)
         {
