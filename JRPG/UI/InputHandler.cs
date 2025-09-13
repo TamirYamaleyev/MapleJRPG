@@ -1,5 +1,6 @@
 ﻿using JRPG.Core;
 using JRPG.Systems;
+using JRPG.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,66 +16,51 @@ namespace JRPG.UI
         //public Item? ChosenItem { get; set; }
 
 
-        public static BattleAction DisplayCombatOptions(Player player)
+        public static BattleAction DisplayCombatOptions(Player player, int currentRound)
         {
-            // Move to UI class
-            while (true)
+            string[] options = { "Attack", "Skill", "Item", "Defend" };
+            string[] tooltips = { $"Attack Value: {player.Attack}", "(Class Skills)", "(Potions, etc)", "Take half damage for a turn" };
+            int choice = Helper.ChoiceSelection($"{player.Name}, choose your action:", options, tooltips);
+
+            switch (choice)
             {
-                Console.WriteLine("\nChoose Combat Option: \n1)Attack\n2)Skill\n3)Item\n4)Defend\n5)Flee");
-                string choice = Console.ReadLine();
-
-                if (int.TryParse(choice, out int combatAction))
-                {
-                    switch (combatAction)
-                    {
-                        // dont forget to validate if action is possible
-                        case 1:
-                            return new BattleAction(player, BattleAction.ActionType.Attack, ChooseOneEnemy());
-                        case 2:
-                            return new BattleAction(player, BattleAction.ActionType.Skill);
-                        case 3:
-                            return new BattleAction(player, BattleAction.ActionType.Item);
-                        case 4:
-                            return new BattleAction(player, BattleAction.ActionType.Defend);
-                        case 5:
-                            return new BattleAction(player, BattleAction.ActionType.Flee);
-
-                        default:
-                            Console.Clear();
-                            Console.WriteLine("Invalid Input. Please enter a valid option.\n");
-                            break;
-                    }
-                }
-                else
-                {
-                    Console.Clear();
-                    Console.WriteLine("Invalid Input. Please enter a number.\n");
-                }
+                // dont forget to validate if action is possible
+                case 0:
+                    ConsoleRenderer.ShowBattleStatus(CombatManager.players, CombatManager.enemies, Round.Instance.CurrentRound);
+                    return new BattleAction(player, BattleAction.ActionType.Attack, ChooseOneEnemy());
+                case 1:
+                    return new BattleAction(player, BattleAction.ActionType.Skill);
+                case 2:
+                    return new BattleAction(player, BattleAction.ActionType.Item);
+                case 3:
+                    return new BattleAction(player, BattleAction.ActionType.Defend);
             }
 
+            // Fallback in case of bug?
+            return new BattleAction(player, BattleAction.ActionType.Defend);
         }
         public static Enemy ChooseOneEnemy()
         {
-            while (true)
-            {
-                Console.WriteLine("Choose a target");
-                for (int i = 0; i < CombatManager.enemies.Count; i++)
-                {
-                    Console.WriteLine($"{i}) {CombatManager.enemies[i].Name}");
-                }
+            string[] enemyNames = CombatManager.enemies.Select(e => $"{e.Name} (HP: {e.CurrentHealth}/{e.MaxHealth})").ToArray();
+            int choice = Helper.ChoiceSelection("Choose a target:", enemyNames);
+            return CombatManager.enemies[choice];
+            //while (true)
+            //{
+            //    ConsoleRenderer.ShowTargets(CombatManager.enemies);
 
-                string choice = Console.ReadLine();
-                int.TryParse(choice, out int pickedEnemy);
-                if (pickedEnemy >= 0 && pickedEnemy < CombatManager.enemies.Count)
-                {
-                    return CombatManager.enemies[pickedEnemy];
-                }
-                else
-                {
-                    Console.Clear();
-                    Console.WriteLine("Invalid Target. Please enter a valid option.");
-                }
-            }
+            //    string choice = Console.ReadLine();
+            //    int.TryParse(choice, out int pickedEnemy);
+
+            //    if (pickedEnemy >= 0 && pickedEnemy < CombatManager.enemies.Count)
+            //    {
+            //        return CombatManager.enemies[pickedEnemy - 1];
+            //    }
+            //    else
+            //    {
+            //        Console.Clear();
+            //        Console.WriteLine("Invalid Target. Please enter a valid option.");
+            //    }
+            //}
         }
     }
 }
