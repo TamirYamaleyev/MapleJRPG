@@ -40,7 +40,7 @@ namespace JRPG.Systems
             {
                 ConsoleRenderer.ShowBattleStatus(players, enemies, currentRound);
 
-                for (int i = combatants.Count - 1; i >= 0; i--)
+                for (int i = 0; i < combatants.Count; i++)
                 {
                     if (CheckBattleOver()) break;
 
