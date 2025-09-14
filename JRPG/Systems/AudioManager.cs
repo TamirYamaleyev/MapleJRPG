@@ -28,10 +28,6 @@ namespace JRPG.Systems
             outputDevice.Init(loopStream);
             outputDevice.Play();
         }
-
-        /// <summary>
-        /// Stops the currently playing BGM
-        /// </summary>
         public void StopBGM()
         {
             if (outputDevice != null)
@@ -48,9 +44,6 @@ namespace JRPG.Systems
             }
         }
 
-        /// <summary>
-        /// Clean up resources on game exit
-        /// </summary>
         public void Dispose()
         {
             StopBGM();

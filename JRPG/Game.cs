@@ -1,4 +1,5 @@
-﻿using JRPG.Core;
+﻿using JRPG.Classes;
+using JRPG.Core;
 using JRPG.Systems;
 using System;
 using System.Collections.Generic;
@@ -20,14 +21,16 @@ namespace JRPG
 
         private void StartBattle()
         {
-            Player hero = new Player("Hero");
-            Player mage = new Player("Mage");
+            Player warrior = new Warrior("Swordsman");
+            Player bowman = new Bowman("Archer");
+            Player magician = new Magician("Magician");
+            Player thief = new Thief("Rogue");
 
             Enemy goblin = new Enemy("Goblin");
             Enemy slime = new Enemy("Slime");
 
             combatManager = new CombatManager();
-            combatManager.InitializeCombatants(new Player[] { hero, mage }, new Enemy[] { goblin, slime });
+            combatManager.InitializeCombatants(new Player[] { warrior, bowman, magician, thief }, new Enemy[] { goblin, slime });
 
             combatManager.BeginCombat();
         }

@@ -32,22 +32,13 @@ namespace JRPG.Core
         protected int currentMana;
         protected int attack = 3;
 
-        private int startingStatValues = 4;
-        protected int strength;
-        protected int dexterity;
-        protected int intelligence;
-        protected int luck;
-
+        protected List<Skill> skillList = new List<Skill>();
 
         public Player(string name)
         {
             this.name = name;
             currentHealth = maxHealth;
             currentMana = maxMana;
-            strength = startingStatValues;
-            dexterity = startingStatValues;
-            intelligence = startingStatValues;
-            luck = startingStatValues;
         }
 
         public void TakeDamage(int damage)
