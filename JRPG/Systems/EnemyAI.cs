@@ -12,7 +12,7 @@ namespace JRPG.Systems
         public static BattleAction AttackRandomPlayer(Enemy enemy)
         {
             Random random = new Random();
-            int playerNumber = random.Next(0, CombatManager.players.Count - 1);
+            int playerNumber = random.Next(0, CombatManager.players.Count);
             return new BattleAction(enemy, BattleAction.ActionType.Attack, CombatManager.players[playerNumber]);
         }
     }
