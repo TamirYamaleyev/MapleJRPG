@@ -42,12 +42,7 @@ namespace JRPG.Systems
 
                 for (int i = combatants.Count - 1; i >= 0; i--)
                 {
-                    //if (!combatants[i].IsAlive)
-                    //{
-                    //    RemoveCombatant(combatants[i]);
-                    //    if (CheckBattleOver()) break;
-                    //    continue;
-                    //}
+                    if (CheckBattleOver()) break;
 
                     if (combatants[i] is Player p)
                     {
