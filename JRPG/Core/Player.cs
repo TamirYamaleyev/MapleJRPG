@@ -50,6 +50,10 @@ namespace JRPG.Core
         {
             currentHealth += amount;
         }
+        public void UseMana(int amount)
+        {
+            currentMana -= amount;
+        }
 
         public int NormalAttack(IDamageable target)
         {
