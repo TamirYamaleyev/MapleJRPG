@@ -46,13 +46,15 @@ namespace JRPG.Systems
 
                     if (combatants[i] is Player p)
                     {
-                        BattleAction action = InputHandler.DisplayCombatOptions(p, currentRound);
-                        ExecuteAction(action);
+                        BattleAction playerAction = InputHandler.DisplayCombatOptions(p, currentRound);
+                        ExecuteAction(playerAction);
                         ConsoleRenderer.ShowBattleStatus(players, enemies, currentRound);
                     }
-                    else if (combatants[i] is Enemy)
+                    else if (combatants[i] is Enemy currentEnemy)
                     {
-                        // Call AI for Enemy Turn
+                        BattleAction enemyAction = EnemyAI.AttackRandomPlayer(currentEnemy);
+                        ExecuteAction(enemyAction);
+                        ConsoleRenderer.ShowBattleStatus(players, enemies, currentRound);
                     }
                 }
                 currentRound++;

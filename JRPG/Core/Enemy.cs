@@ -17,7 +17,7 @@ namespace JRPG.Core
 
         protected int maxHealth = 10;
         protected int currentHealth;
-        protected int damage;
+        protected int attack = 2;
 
         public Enemy(string name)
         {
@@ -36,8 +36,8 @@ namespace JRPG.Core
         }
         public int NormalAttack(IDamageable target)
         {
-            target.TakeDamage(damage);
-            return damage;
+            target.TakeDamage(attack);
+            return attack;
         }
     }
 }

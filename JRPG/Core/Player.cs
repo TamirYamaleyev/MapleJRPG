@@ -17,7 +17,7 @@ namespace JRPG.Core
 
         // <--- Stats --->
         public int MaxHealth { get { return maxHealth; } }
-        public int CurrentHealth { get { return maxHealth; } }
+        public int CurrentHealth { get { return currentHealth; } }
         public int MaxMana { get { return maxMana; } }
         public int CurrentMana {  get { return currentMana; } }
         public int Attack {  get { return attack; } }
