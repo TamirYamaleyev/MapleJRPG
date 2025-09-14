@@ -42,12 +42,12 @@ namespace JRPG.Systems
 
                 for (int i = combatants.Count - 1; i >= 0; i--)
                 {
-                    if (!combatants[i].IsAlive)
-                    {
-                        RemoveCombatant(combatants[i]);
-                        if (CheckBattleOver()) break;
-                        continue;
-                    }
+                    //if (!combatants[i].IsAlive)
+                    //{
+                    //    RemoveCombatant(combatants[i]);
+                    //    if (CheckBattleOver()) break;
+                    //    continue;
+                    //}
 
                     if (combatants[i] is Player p)
                     {
@@ -70,6 +70,7 @@ namespace JRPG.Systems
             else if (combatant is Enemy e) enemies.Remove(e);
 
             combatants.Remove(combatant);
+            CheckBattleOver();
         }
 
         private bool CheckBattleOver()
@@ -105,6 +106,7 @@ namespace JRPG.Systems
                 case BattleAction.ActionType.Attack:
                     int damage = action.Actor.NormalAttack(action.Targets[0]);
                     action.ResultValue = damage;
+                    if (!action.Targets[0].IsAlive) RemoveCombatant(action.Targets[0]);
                     break;
                 case BattleAction.ActionType.Skill:
                     // Use skill ---
