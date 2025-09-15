@@ -1,4 +1,5 @@
-﻿using JRPG.Utils;
+﻿using JRPG.Systems;
+using JRPG.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,6 @@ namespace JRPG.Core
         public string Name { get; }
         public int MaxHealth { get { return maxHealth; } }
         public int CurrentHealth { get { return currentHealth; } }
-        public bool IsAlive => CurrentHealth > 0;
 
         public int PoisonDuration { get { return PoisonDuration; } set { poisonDuration = value; } }
         public int StunDuration { get { return PoisonDuration; } set { poisonDuration = value; } }
@@ -35,6 +35,7 @@ namespace JRPG.Core
         public void TakeDamage(int damage)
         {
             currentHealth -= damage;
+            if (currentHealth <= 0) CombatManager.enemies.Remove(this);
         }
         public void Heal(int amount)
         {

@@ -9,7 +9,6 @@ namespace JRPG.Core
     internal interface IDamageable
     {
         string Name { get; }
-        bool IsAlive { get; }
         int MaxHealth { get; }
         int CurrentHealth { get; }
         void TakeDamage(int damage);

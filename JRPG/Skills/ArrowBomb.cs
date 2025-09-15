@@ -36,9 +36,9 @@ namespace JRPG.Skills
 
             // Explosion damage to all nearby enemies
             int damage = (int)(caster.Attack * damageMultiplier);
-            foreach (Enemy enemy in CombatManager.enemies)
+            for (int i = CombatManager.enemies.Count - 1; i >= 0; i--)
             {
-                enemy.TakeDamage(damage);
+                CombatManager.enemies[i].TakeDamage(damage);
             }
 
             for (int i = 0; i < numOfHits; i++)

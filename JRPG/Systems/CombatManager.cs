@@ -1,7 +1,9 @@
 ﻿using JRPG.Core;
+using JRPG.Skills;
 using JRPG.UI;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -103,10 +105,14 @@ namespace JRPG.Systems
                 case BattleAction.ActionType.Attack:
                     int damage = action.Actor.NormalAttack(action.Targets[0]);
                     action.ResultValue = damage;
-                    if (!action.Targets[0].IsAlive) RemoveCombatant(action.Targets[0]);
+                    //if (!action.Targets[0].IsAlive) RemoveCombatant(action.Targets[0]);
                     break;
                 case BattleAction.ActionType.Skill:
-                    // Use skill ---
+                    action.Skill.Use(action.Actor as Player, action.Targets.ToArray());
+                    //for (int i = 0; i < enemies.Count; i++)
+                    //{
+                    //    if (!enemies[i].IsAlive) RemoveCombatant(enemies[i]);
+                    //}
                     break;
                 case BattleAction.ActionType.Item:
                     // Use item ---
@@ -116,7 +122,6 @@ namespace JRPG.Systems
                     break;
             }
             ConsoleRenderer.ShowActionResult(action, action.ResultValue);
-
         }
     }
 }

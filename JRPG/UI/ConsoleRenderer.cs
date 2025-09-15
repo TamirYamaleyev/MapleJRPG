@@ -29,6 +29,7 @@ namespace JRPG.UI
         {
             Console.WriteLine(message);
         }
+
         public static void ShowActionResult(BattleAction action, int resultValue)
         {
             switch (action.Type)
@@ -37,7 +38,7 @@ namespace JRPG.UI
                     Console.WriteLine($"{action.Actor.Name} attacks {action.Targets[0].Name} for {resultValue} damage");
                     break;
                 case BattleAction.ActionType.Skill:
-                    Console.WriteLine($"PLACEHOLDER");
+                    // Description is already inside the skill itself
                     break;
                 case BattleAction.ActionType.Item:
                     Console.WriteLine($"PLACEHOLDER");

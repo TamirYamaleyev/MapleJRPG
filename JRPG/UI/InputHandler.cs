@@ -30,12 +30,8 @@ namespace JRPG.UI
                     return new BattleAction(player, BattleAction.ActionType.Attack, ChooseOneEnemy());
                 case 1:
                     Skill chosenSkill = ChooseASkill(player);
-                    if (chosenSkill is MagicGuard && chosenSkill is SlashBlast)
-                    {
-                        Enemy chosenEnemy = ChooseOneEnemy();
-                        return new BattleAction(player, chosenSkill, chosenEnemy);
-                    }
-                    return new BattleAction(player, chosenSkill);
+                    Enemy chosenEnemy = ChooseOneEnemy();
+                    return new BattleAction(player, chosenSkill, chosenEnemy);
                 case 2:
                     return new BattleAction(player, BattleAction.ActionType.Item);
                 case 3:

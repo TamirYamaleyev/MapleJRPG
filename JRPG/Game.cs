@@ -28,9 +28,11 @@ namespace JRPG
 
             Enemy goblin = new Enemy("Goblin");
             Enemy slime = new Enemy("Slime");
+            Enemy skeleton = new Enemy("Skeleton");
+            Enemy zombie = new Enemy("Zombie");
 
             combatManager = new CombatManager();
-            combatManager.InitializeCombatants(new Player[] { warrior, bowman, magician, thief }, new Enemy[] { goblin, slime });
+            combatManager.InitializeCombatants(new Player[] { warrior, bowman, magician, thief }, new Enemy[] { goblin, slime, skeleton, zombie });
 
             combatManager.BeginCombat();
         }

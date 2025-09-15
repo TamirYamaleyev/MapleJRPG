@@ -45,11 +45,5 @@ namespace JRPG.Core
             Skill = skill;
             SetSingleTarget(target);
         }
-        public BattleAction(IDamageable actor, Skill skill)
-        {
-            Actor = actor;
-            Type = ActionType.Skill;
-            Skill = skill;
-        }
     }
 }

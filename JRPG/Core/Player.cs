@@ -1,4 +1,5 @@
 ﻿using JRPG.Skills;
+using JRPG.Systems;
 using JRPG.Utils;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,6 @@ namespace JRPG.Core
         public int MaxMana { get { return maxMana; } }
         public int CurrentMana {  get { return currentMana; } }
         public int Attack {  get { return attack; } }
-        public bool IsAlive => CurrentHealth > 0;
 
         public int MagicGuardDuration { get { return magicGuardDuration; } set { magicGuardDuration = value; } }
 
@@ -57,6 +57,8 @@ namespace JRPG.Core
                 return;
             }
             currentHealth -= damage;
+
+            if (currentHealth <= 0) CombatManager.players.Remove(this);
         }
 
         public void Heal(int amount)
