@@ -59,6 +59,7 @@ namespace JRPG.Systems
                         ConsoleRenderer.ShowBattleStatus(players, enemies, currentRound);
                     }
                 }
+                foreach (Player player in players) player.DefendDuration--;
                 currentRound++;
             }
         }
@@ -106,11 +107,9 @@ namespace JRPG.Systems
                 case BattleAction.ActionType.Skill:
                     action.Skill.Use(action.Actor as Player, action.Targets.ToArray());
                     break;
-                case BattleAction.ActionType.Item:
-                    // Use item ---
-                    break;
                 case BattleAction.ActionType.Defend:
-                    // Defend ---
+                    Player playerActor = action.Actor as Player;
+                    playerActor.DefendDuration = Player.defendActionDurationValue;
                     break;
             }
             ConsoleRenderer.ShowActionResult(action, action.ResultValue);

@@ -40,9 +40,6 @@ namespace JRPG.UI
                 case BattleAction.ActionType.Skill:
                     // Description is already inside the skill itself
                     break;
-                case BattleAction.ActionType.Item:
-                    Console.WriteLine($"PLACEHOLDER");
-                    break;
                 case BattleAction.ActionType.Defend:
                     Console.WriteLine($"{action.Actor} Defends");
                     break;

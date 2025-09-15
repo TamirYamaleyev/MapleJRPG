@@ -16,6 +16,8 @@ namespace JRPG.Core
 
         public const float minRangeMultiplier = 0.75f;
         public const float maxRangeMultiplier = 1.25f;
+        public const int defendActionDurationValue = 2;
+        public const float defendActionValue = 0.5f;
 
         // <--- Stats --->
         public int MaxHealth { get { return maxHealth; } }
@@ -25,6 +27,7 @@ namespace JRPG.Core
         public int Attack {  get { return attack; } }
 
         public int MagicGuardDuration { get { return magicGuardDuration; } set { magicGuardDuration = value; } }
+        public int DefendDuration { get { return defendDuration; } set { defendDuration = value; } }
 
         public string Name { get { return name; } }
         protected string name;
@@ -33,7 +36,9 @@ namespace JRPG.Core
         protected int currentHealth;
         protected int maxMana = 100;
         protected int currentMana;
-        protected int attack = 3;
+        protected int attack;
+
+        private int defendDuration = 0;
 
         public List<Skill> skillList = new List<Skill>();
         private int magicGuardDuration = 0;
@@ -50,6 +55,7 @@ namespace JRPG.Core
 
         public void TakeDamage(int damage)
         {
+            if (DefendDuration > 0) damage = (int)(damage * defendActionValue);
             if (magicGuardDuration > 0 && CurrentMana > 0)
             {
                 UseMana((int)(damage * MagicGuard.manaSubstituteAmount));

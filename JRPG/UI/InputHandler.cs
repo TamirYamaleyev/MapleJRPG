@@ -14,8 +14,8 @@ namespace JRPG.UI
     {
         public static BattleAction DisplayCombatOptions(Player player, int currentRound)
         {
-            string[] options = { "Attack", "Skill", "Item", "Defend" };
-            string[] tooltips = { $"Attack Range: {Math.Floor(player.Attack * Player.minRangeMultiplier)} ~ {Math.Ceiling(player.Attack * Player.maxRangeMultiplier)}", "(Class Skills)", "(Potions, etc)", "Take half damage for a turn" };
+            string[] options = { "Attack", "Skill", "Defend" };
+            string[] tooltips = { $"Attack Range: {Math.Floor(player.Attack * Player.minRangeMultiplier)} ~ {Math.Ceiling(player.Attack * Player.maxRangeMultiplier)}", "(Class Skills)", $"Take {Player.defendActionValue}x damage for {Player.defendActionDurationValue} turn(s)" };
             int choice = Helper.ChoiceSelection($"{player.Name}, choose your action:", options, tooltips);
 
             switch (choice)
@@ -28,8 +28,6 @@ namespace JRPG.UI
                     Enemy chosenEnemy = ChooseOneEnemy();
                     return new BattleAction(player, chosenSkill, chosenEnemy);
                 case 2:
-                    return new BattleAction(player, BattleAction.ActionType.Item);
-                case 3:
                     return new BattleAction(player, BattleAction.ActionType.Defend);
             }
 
