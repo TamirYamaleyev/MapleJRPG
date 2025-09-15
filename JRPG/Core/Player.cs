@@ -29,7 +29,7 @@ namespace JRPG.Core
         public string Name { get { return name; } }
         protected string name;
 
-        protected int maxHealth = 100;
+        protected int maxHealth;
         protected int currentHealth;
         protected int maxMana = 100;
         protected int currentMana;
@@ -38,11 +38,14 @@ namespace JRPG.Core
         public List<Skill> skillList = new List<Skill>();
         private int magicGuardDuration = 0;
 
-        public Player(string name)
+        public Player(string name, int maxHealth, int maxMana, int attack)
         {
             this.name = name;
+            this.maxHealth = maxHealth;
             currentHealth = maxHealth;
+            this.maxMana = maxMana;
             currentMana = maxMana;
+            this.attack = attack;
         }
 
         public void TakeDamage(int damage)

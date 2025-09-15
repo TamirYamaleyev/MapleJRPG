@@ -10,10 +10,11 @@ namespace JRPG.Classes
 {
     internal class Magician : Player
     {
-        public Magician(string name) : base(name)
-        {
-            maxHealth = 20;
-            attack = 2;
+        static private int maxHealth = 20;
+        static private int maxMana = 100;
+        static private int attack = 2;
+        public Magician(string name) : base(name, maxHealth, maxMana, attack)
+        { 
             skillList.Add(new MagicClaw());
             skillList.Add(new MagicGuard());
             skillList.Add(new PoisonBreath());

@@ -10,10 +10,11 @@ namespace JRPG.Classes
 {
     internal class Thief : Player
     {
-        public Thief(string name) : base(name)
-        {
-            maxHealth = 25;
-            attack = 7;
+        static private int maxHealth = 25;
+        static private int maxMana = 100;
+        static private int attack = 7;
+        public Thief(string name) : base(name, maxHealth, maxMana, attack) 
+        { 
             skillList.Add(new LuckySeven());
             skillList.Add(new Drain());
         }

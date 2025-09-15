@@ -10,10 +10,11 @@ namespace JRPG.Classes
 {
     internal class Bowman : Player
     {
-        public Bowman(string name) : base(name)
+        static private int maxHealth = 30;
+        static private int maxMana = 100;
+        static private int attack = 8;
+        public Bowman(string name) : base(name, maxHealth, maxMana, attack)
         {
-            maxHealth = 30;
-            attack = 8;
             skillList.Add(new DoubleShot());
             skillList.Add(new ArrowBomb());
         }

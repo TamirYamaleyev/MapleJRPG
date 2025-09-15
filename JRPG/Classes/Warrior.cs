@@ -10,11 +10,11 @@ namespace JRPG.Classes
 {
     internal class Warrior : Player
     {
-        public Warrior(string name) : base(name)
+        static private int maxHealth = 50;
+        static private int maxMana = 100;
+        static private int attack = 4;
+        public Warrior(string name) : base(name, maxHealth, maxMana, attack)
         {
-            maxHealth = 50;
-            attack = 4;
-
             skillList.Add(new PowerStrike());
             skillList.Add(new SlashBlast());
         }
