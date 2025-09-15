@@ -1,4 +1,5 @@
-﻿using JRPG.Utils;
+﻿using JRPG.Skills;
+using JRPG.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,8 @@ namespace JRPG.Core
         public int Attack {  get { return attack; } }
         public bool IsAlive => CurrentHealth > 0;
 
+        public int MagicGuardDuration { get { return magicGuardDuration; } set { magicGuardDuration = value; } }
+
         public string Name { get { return name; } }
         protected string name;
 
@@ -33,6 +36,7 @@ namespace JRPG.Core
         protected int attack = 3;
 
         protected List<Skill> skillList = new List<Skill>();
+        private int magicGuardDuration = 0;
 
         public Player(string name)
         {
@@ -43,6 +47,12 @@ namespace JRPG.Core
 
         public void TakeDamage(int damage)
         {
+            if (magicGuardDuration > 0)
+            {
+                UseMana((int)(damage * MagicGuard.manaSubstituteAmount));
+                currentHealth -= (int)(damage * (1 - MagicGuard.manaSubstituteAmount));
+                return;
+            }
             currentHealth -= damage;
         }
 
