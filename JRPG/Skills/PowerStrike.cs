@@ -9,11 +9,12 @@ namespace JRPG.Skills
 {
     internal class PowerStrike : Skill
     {
-        private static readonly float damageMultiplier = 1.8f;
+        private static readonly float damageMultiplier = 2.1f;
         private static readonly int healthCost = 0;
         private static readonly int manaCost = 7;
         private static readonly string displayName = "Power Strike";
-        public PowerStrike() : base(displayName, healthCost, manaCost)
+        private static readonly int numOfHits = 1;
+        public PowerStrike() : base(displayName, healthCost, manaCost, numOfHits)
         {
         }
 

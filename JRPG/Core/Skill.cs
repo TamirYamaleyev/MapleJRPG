@@ -11,12 +11,14 @@ namespace JRPG.Core
         public string Name { get; set; }
         public int HealthCost { get; set; }
         public int ManaCost { get; set; }
+        public int NumOfHits { get; set; }
 
-        protected Skill(string name, int healthCost, int manaCost)
+        protected Skill(string name, int healthCost, int manaCost, int numOfHits)
         {
             Name = name;
             HealthCost = healthCost;
             ManaCost = manaCost;
+            NumOfHits = numOfHits;
         }
 
         public abstract bool Use(Player caster, IDamageable[] targets);

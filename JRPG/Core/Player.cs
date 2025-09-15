@@ -67,10 +67,5 @@ namespace JRPG.Core
         {
             return Math.Clamp(Helper.CalculateRandomRange(attack), 1, damageCap);
         }
-
-        public void increaseStat()
-        {
-
-        }
     }
 }
