@@ -12,11 +12,6 @@ namespace JRPG.UI
 {
     internal class InputHandler
     {
-        
-        //public Skill? ChosenSkill { get; set; }
-        //public Item? ChosenItem { get; set; }
-
-
         public static BattleAction DisplayCombatOptions(Player player, int currentRound)
         {
             string[] options = { "Attack", "Skill", "Item", "Defend" };
@@ -51,7 +46,8 @@ namespace JRPG.UI
         public static Skill ChooseASkill(Player actor)
         {
             string[] skillNames = actor.skillList.Select(s => $"{s.Name} (HP Cost: {s.HealthCost} | MP Cost: {s.ManaCost})").ToArray();
-            int choice = Helper.ChoiceSelection("Choose a skill:", skillNames);
+            string[] tooltips = actor.skillList.Select(s => $"{s.Tooltip}").ToArray();
+            int choice = Helper.ChoiceSelection("Choose a skill:", skillNames, tooltips);
             return actor.skillList[choice];
         }
     }

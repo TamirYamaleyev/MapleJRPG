@@ -63,15 +63,6 @@ namespace JRPG.Systems
             }
         }
 
-        private void RemoveCombatant(IDamageable combatant)
-        {
-            if (combatant is Player p) players.Remove(p);
-            else if (combatant is Enemy e) enemies.Remove(e);
-
-            combatants.Remove(combatant);
-            CheckBattleOver();
-        }
-
         private bool CheckBattleOver()
         {
             if (players.Count == 0)
@@ -91,6 +82,12 @@ namespace JRPG.Systems
         {
             battleNotOver = false;
             ConsoleRenderer.ShowCombatMessage("Your party wins the battle!");
+
+            foreach (Player player in players)
+            {
+                player.FullHealthRestore();
+                player.FullManaRestore();
+            }
         }
         private void CombatLoss()
         {
@@ -105,14 +102,9 @@ namespace JRPG.Systems
                 case BattleAction.ActionType.Attack:
                     int damage = action.Actor.NormalAttack(action.Targets[0]);
                     action.ResultValue = damage;
-                    //if (!action.Targets[0].IsAlive) RemoveCombatant(action.Targets[0]);
                     break;
                 case BattleAction.ActionType.Skill:
                     action.Skill.Use(action.Actor as Player, action.Targets.ToArray());
-                    //for (int i = 0; i < enemies.Count; i++)
-                    //{
-                    //    if (!enemies[i].IsAlive) RemoveCombatant(enemies[i]);
-                    //}
                     break;
                 case BattleAction.ActionType.Item:
                     // Use item ---

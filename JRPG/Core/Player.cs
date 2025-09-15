@@ -42,9 +42,9 @@ namespace JRPG.Core
         {
             this.name = name;
             this.maxHealth = maxHealth;
-            currentHealth = maxHealth;
+            FullHealthRestore();
             this.maxMana = maxMana;
-            currentMana = maxMana;
+            FullManaRestore();
             this.attack = attack;
         }
 
@@ -77,7 +77,15 @@ namespace JRPG.Core
             return damage;
         }
 
-        // To move?
+        public void FullHealthRestore()
+        {
+            currentHealth = maxHealth;
+        }
+        public void FullManaRestore()
+        {
+            currentMana = maxMana;
+        }
+
         public int CalculateDamage()
         {
             return Math.Clamp(Helper.CalculateRandomRange(attack), 1, damageCap);
