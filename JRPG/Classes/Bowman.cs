@@ -15,6 +15,7 @@ namespace JRPG.Classes
             maxHealth = 30;
             attack = 8;
             skillList.Add(new DoubleShot());
+            skillList.Add(new ArrowBomb());
         }
     }
 }

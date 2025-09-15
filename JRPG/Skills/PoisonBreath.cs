@@ -15,10 +15,11 @@ namespace JRPG.Skills
         private static readonly int manaCost = 10;
         private static readonly string displayName = "Poison Breath";
         private static readonly int numOfHits = 1;
+        private static readonly string tooltip = $"Creates a poisonous water bubble and shoots at an enemy. The enemy gets temporarily poisoned for {duration} turns";
 
         private static readonly float poisonDamageMultiplier = 1.3f;
         public static readonly int duration = 2;
-        public PoisonBreath() : base(displayName, healthCost, manaCost, numOfHits)
+        public PoisonBreath() : base(displayName, healthCost, manaCost, numOfHits, tooltip)
         {
         }
 

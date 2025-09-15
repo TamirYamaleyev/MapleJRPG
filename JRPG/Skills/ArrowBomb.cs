@@ -1,4 +1,5 @@
-﻿using JRPG.Core;
+﻿using JRPG.Classes;
+using JRPG.Core;
 using JRPG.Systems;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,8 @@ namespace JRPG.Skills
         private static readonly int manaCost = 14;
         private static readonly string displayName = "Arrow Bomb";
         private static readonly int numOfHits = 1;
-        public ArrowBomb() : base(displayName, healthCost, manaCost, numOfHits)
+        private static readonly string tooltip = "Fires an arrow with a bomb attached to it. the bomb explodes on the enemy, dealing damage to all enemies around it";
+        public ArrowBomb() : base(displayName, healthCost, manaCost, numOfHits, tooltip)
         {
         }
 

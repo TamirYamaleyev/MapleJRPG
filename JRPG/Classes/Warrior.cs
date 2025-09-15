@@ -14,7 +14,9 @@ namespace JRPG.Classes
         {
             maxHealth = 50;
             attack = 4;
+
             skillList.Add(new PowerStrike());
+            skillList.Add(new SlashBlast());
         }
     }
 }

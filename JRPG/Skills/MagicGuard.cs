@@ -15,10 +15,11 @@ namespace JRPG.Skills
         private static readonly int manaCost = 8;
         private static readonly string displayName = "Magic Guard";
         private static readonly int numOfHits = 0;
+        private static readonly string tooltip = "Damage dealt to you affects a percentage of your MP instead of your HP. if your MP reaches 0, your HP takes the full amount of damage";
 
         private static readonly int duration = 3;
         public static readonly float manaSubstituteAmount = 0.42f;
-        public MagicGuard() : base(displayName, healthCost, manaCost, numOfHits)
+        public MagicGuard() : base(displayName, healthCost, manaCost, numOfHits, tooltip)
         {
         }
 

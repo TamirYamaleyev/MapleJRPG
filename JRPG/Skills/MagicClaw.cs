@@ -14,7 +14,8 @@ namespace JRPG.Skills
         private static readonly int manaCost = 13;
         private static readonly string displayName = "Magic Claw";
         private static readonly int numOfHits = 2;
-        public MagicClaw() : base(displayName, healthCost, manaCost, numOfHits)
+        private static readonly string tooltip = "Uses MP to attack an enemy twice";
+        public MagicClaw() : base(displayName, healthCost, manaCost, numOfHits, tooltip)
         {
         }
 

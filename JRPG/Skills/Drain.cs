@@ -14,9 +14,10 @@ namespace JRPG.Skills
         private static readonly int manaCost = 10;
         private static readonly string displayName = "Drain";
         private static readonly int numOfHits = 1;
+        private static readonly string tooltip = "Absorb some of the damage dished out to the enemy as HP";
 
         private static readonly float lifeStealPercentage = 0.25f;
-        public Drain() : base(displayName, healthCost, manaCost, numOfHits)
+        public Drain() : base(displayName, healthCost, manaCost, numOfHits, tooltip)
         {
         }
 

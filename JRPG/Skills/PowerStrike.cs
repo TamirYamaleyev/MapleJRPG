@@ -14,7 +14,8 @@ namespace JRPG.Skills
         private static readonly int manaCost = 7;
         private static readonly string displayName = "Power Strike";
         private static readonly int numOfHits = 1;
-        public PowerStrike() : base(displayName, healthCost, manaCost, numOfHits)
+        private static readonly string tooltip = "Use MP ot deliver a killer blow to the monsters with a sword";
+        public PowerStrike() : base(displayName, healthCost, manaCost, numOfHits, tooltip)
         {
         }
 

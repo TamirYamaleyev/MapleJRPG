@@ -15,6 +15,7 @@ namespace JRPG.Classes
             maxHealth = 25;
             attack = 7;
             skillList.Add(new LuckySeven());
+            skillList.Add(new Drain());
         }
     }
 }

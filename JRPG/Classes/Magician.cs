@@ -15,6 +15,9 @@ namespace JRPG.Classes
             maxHealth = 20;
             attack = 2;
             skillList.Add(new MagicClaw());
+            skillList.Add(new MagicGuard());
+            skillList.Add(new PoisonBreath());
+            skillList.Add(new ColdBeam());
         }
     }
 }

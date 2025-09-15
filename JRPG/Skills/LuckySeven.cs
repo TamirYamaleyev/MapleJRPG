@@ -14,7 +14,8 @@ namespace JRPG.Skills
         private static readonly int manaCost = 11;
         private static readonly string displayName = "Lucky Seven";
         private static readonly int numOfHits = 2;
-        public LuckySeven() : base(displayName, healthCost, manaCost, numOfHits)
+        private static readonly string tooltip = "Throws 2 throwing stars at an enemy";
+        public LuckySeven() : base(displayName, healthCost, manaCost, numOfHits, tooltip)
         {
         }
 

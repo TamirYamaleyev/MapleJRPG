@@ -47,7 +47,7 @@ namespace JRPG.Core
 
         public void TakeDamage(int damage)
         {
-            if (magicGuardDuration > 0)
+            if (magicGuardDuration > 0 && CurrentMana > 0)
             {
                 UseMana((int)(damage * MagicGuard.manaSubstituteAmount));
                 currentHealth -= (int)(damage * (1 - MagicGuard.manaSubstituteAmount));

@@ -14,9 +14,10 @@ namespace JRPG.Skills
         private static readonly int manaCost = 12;
         private static readonly string displayName = "Cold Beam";
         private static readonly int numOfHits = 1;
+        private static readonly string tooltip = $"Creates a sharp piece of ice to fire at an enemy, freezing it for {duration} turns";
 
         public static readonly int duration = 2;
-        public ColdBeam() : base(displayName, healthCost, manaCost, numOfHits)
+        public ColdBeam() : base(displayName, healthCost, manaCost, numOfHits, tooltip)
         {
         }
 

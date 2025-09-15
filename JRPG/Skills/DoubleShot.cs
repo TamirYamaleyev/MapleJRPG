@@ -14,7 +14,8 @@ namespace JRPG.Skills
         private static readonly int manaCost = 11;
         private static readonly string displayName = "Double Shot";
         private static readonly int numOfHits = 2;
-        public DoubleShot() : base(displayName, healthCost, manaCost, numOfHits)
+        private static readonly string tooltip = "Fires two arrows at an enemy";
+        public DoubleShot() : base(displayName, healthCost, manaCost, numOfHits, tooltip)
         {
         }
 

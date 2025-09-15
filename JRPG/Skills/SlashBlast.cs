@@ -16,7 +16,8 @@ namespace JRPG.Skills
         private static readonly int manaCost = 9;
         private static readonly string displayName = "Slash Blast";
         private static readonly int numOfHits = 1;
-        public SlashBlast() : base(displayName, healthCost, manaCost, numOfHits)
+        private static readonly string tooltip = "Use HP and MP to attack every enemy around with a sword";
+        public SlashBlast() : base(displayName, healthCost, manaCost, numOfHits, tooltip)
         {
         }
 
