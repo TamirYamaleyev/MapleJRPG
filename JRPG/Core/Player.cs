@@ -35,7 +35,7 @@ namespace JRPG.Core
         protected int currentMana;
         protected int attack = 3;
 
-        protected List<Skill> skillList = new List<Skill>();
+        public List<Skill> skillList = new List<Skill>();
         private int magicGuardDuration = 0;
 
         public Player(string name)

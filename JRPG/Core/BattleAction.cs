@@ -19,6 +19,7 @@ namespace JRPG.Core
         public ActionType Type { get; set; }
         public List<IDamageable> Targets { get; private set; } = new();
         public int ResultValue { get; set; }
+        public Skill Skill { get; set; }
 
         public void SetSingleTarget(IDamageable target)
         {
@@ -36,6 +37,19 @@ namespace JRPG.Core
             Actor = actor;
             Type = action;
             SetSingleTarget(target);
+        }
+        public BattleAction(IDamageable actor, Skill skill, IDamageable target)
+        {
+            Actor = actor;
+            Type = ActionType.Skill;
+            Skill = skill;
+            SetSingleTarget(target);
+        }
+        public BattleAction(IDamageable actor, Skill skill)
+        {
+            Actor = actor;
+            Type = ActionType.Skill;
+            Skill = skill;
         }
     }
 }

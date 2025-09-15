@@ -1,4 +1,5 @@
 ﻿using JRPG.Core;
+using JRPG.Skills;
 using JRPG.Systems;
 using JRPG.Utils;
 using System;
@@ -24,12 +25,17 @@ namespace JRPG.UI
 
             switch (choice)
             {
-                // dont forget to validate if action is possible
                 case 0:
                     ConsoleRenderer.ShowBattleStatus(CombatManager.players, CombatManager.enemies, Round.Instance.CurrentRound);
                     return new BattleAction(player, BattleAction.ActionType.Attack, ChooseOneEnemy());
                 case 1:
-                    return new BattleAction(player, BattleAction.ActionType.Skill);
+                    Skill chosenSkill = ChooseASkill(player);
+                    if (chosenSkill is MagicGuard && chosenSkill is SlashBlast)
+                    {
+                        Enemy chosenEnemy = ChooseOneEnemy();
+                        return new BattleAction(player, chosenSkill, chosenEnemy);
+                    }
+                    return new BattleAction(player, chosenSkill);
                 case 2:
                     return new BattleAction(player, BattleAction.ActionType.Item);
                 case 3:
@@ -44,23 +50,13 @@ namespace JRPG.UI
             string[] enemyNames = CombatManager.enemies.Select(e => $"{e.Name} (HP: {e.CurrentHealth}/{e.MaxHealth})").ToArray();
             int choice = Helper.ChoiceSelection("Choose a target:", enemyNames);
             return CombatManager.enemies[choice];
-            //while (true)
-            //{
-            //    ConsoleRenderer.ShowTargets(CombatManager.enemies);
+        }
 
-            //    string choice = Console.ReadLine();
-            //    int.TryParse(choice, out int pickedEnemy);
-
-            //    if (pickedEnemy >= 0 && pickedEnemy < CombatManager.enemies.Count)
-            //    {
-            //        return CombatManager.enemies[pickedEnemy - 1];
-            //    }
-            //    else
-            //    {
-            //        Console.Clear();
-            //        Console.WriteLine("Invalid Target. Please enter a valid option.");
-            //    }
-            //}
+        public static Skill ChooseASkill(Player actor)
+        {
+            string[] skillNames = actor.skillList.Select(s => $"{s.Name} (HP Cost: {s.HealthCost} | MP Cost: {s.ManaCost})").ToArray();
+            int choice = Helper.ChoiceSelection("Choose a skill:", skillNames);
+            return actor.skillList[choice];
         }
     }
 }
