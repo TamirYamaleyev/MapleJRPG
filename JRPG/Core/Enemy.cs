@@ -15,24 +15,26 @@ namespace JRPG.Core
         public int MaxHealth { get { return maxHealth; } }
         public int CurrentHealth { get { return currentHealth; } }
 
-        public int PoisonDuration { get { return PoisonDuration; } set { poisonDuration = value; } }
-        public int StunDuration { get { return PoisonDuration; } set { poisonDuration = value; } }
+        public int PoisonDuration { get { return poisonDuration; } set { poisonDuration = value; } }
+        public int StunDuration { get { return stunDuration; } set { stunDuration = value; } }
+        public int PoisonDamage { get { return poisonDamage; } set { poisonDamage = value; } }
 
         private int maxHealth = 5;
         private int currentHealth;
         private int attack = 3;
         private int difficultyModifier = 1;
 
-        private int poisonDuration = 0;
         private int stunDuration = 0;
+        private int poisonDuration = 0;
+        private int poisonDamage = 0;
 
         public Enemy(string name, int difficultyModifier)
         {
             Name = name;
             this.difficultyModifier = difficultyModifier;
-            maxHealth = Helper.CalculateRandomRange(maxHealth * difficultyModifier);
+            maxHealth = Helper.CalculateRandomRange(maxHealth * this.difficultyModifier);
             currentHealth = maxHealth;
-            attack = Helper.CalculateRandomRange(attack * difficultyModifier);
+            attack = Helper.CalculateRandomRange(attack * this.difficultyModifier);
         }
         
         public void TakeDamage(int damage)

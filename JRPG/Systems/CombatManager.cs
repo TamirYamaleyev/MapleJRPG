@@ -58,6 +58,8 @@ namespace JRPG.Systems
                     }
                     else if (combatants[i] is Enemy currentEnemy)
                     {
+                        if (currentEnemy.PoisonDuration > 0) currentEnemy.TakeDamage(currentEnemy.PoisonDuration);
+                        if (currentEnemy.StunDuration > 0) continue;
                         BattleAction enemyAction = EnemyAI.AttackRandomPlayer(currentEnemy);
                         ExecuteAction(enemyAction);
                         ConsoleRenderer.ShowBattleStatus(players, enemies, currentRound);

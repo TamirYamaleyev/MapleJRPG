@@ -38,6 +38,7 @@ namespace JRPG.Skills
 
             Enemy target = targets[0] as Enemy;
             target.PoisonDuration = duration;
+            target.PoisonDamage = (int)(damage * poisonDamageMultiplier);
 
             Console.WriteLine($"{caster.Name} uses {Name} on {targets[0].Name} for {damage} damage! {targets[0].Name} is now Poisoned for {duration} turns!");
 
