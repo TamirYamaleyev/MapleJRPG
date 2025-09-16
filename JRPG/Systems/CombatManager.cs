@@ -113,7 +113,7 @@ namespace JRPG.Systems
             enemies.AddRange(nextWave);
             combatants.AddRange(nextWave);
 
-            currentRound = 1;
+            currentRound = 0;
         }
         private void CombatLoss()
         {
