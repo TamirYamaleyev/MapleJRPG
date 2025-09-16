@@ -18,18 +18,21 @@ namespace JRPG.Core
         public int PoisonDuration { get { return PoisonDuration; } set { poisonDuration = value; } }
         public int StunDuration { get { return PoisonDuration; } set { poisonDuration = value; } }
 
-        private int maxHealth = 10;
+        private int maxHealth = 5;
         private int currentHealth;
-        private int attack = 2;
+        private int attack = 3;
+        private int difficultyModifier = 1;
 
         private int poisonDuration = 0;
         private int stunDuration = 0;
 
-        public Enemy(string name)
+        public Enemy(string name, int difficultyModifier)
         {
             Name = name;
-            maxHealth = Helper.CalculateRandomRange(maxHealth);
+            this.difficultyModifier = difficultyModifier;
+            maxHealth = Helper.CalculateRandomRange(maxHealth * difficultyModifier);
             currentHealth = maxHealth;
+            attack = Helper.CalculateRandomRange(attack * difficultyModifier);
         }
         
         public void TakeDamage(int damage)

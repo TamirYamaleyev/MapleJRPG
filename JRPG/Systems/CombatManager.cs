@@ -23,7 +23,11 @@ namespace JRPG.Systems
 
         public void InitializeCombatants(Player[] playerArray, Enemy[] enemyArray)
         {
-            foreach(Player player in playerArray)
+            players.Clear();
+            enemies.Clear();
+            combatants.Clear();
+
+            foreach (Player player in playerArray)
             {
                 combatants.Add(player);
                 players.Add(player);
@@ -81,19 +85,44 @@ namespace JRPG.Systems
 
         private void CombatWin()
         {
-            battleNotOver = false;
+            Console.ForegroundColor = ConsoleColor.Green;
             ConsoleRenderer.ShowCombatMessage("Your party wins the battle!");
+            Console.ResetColor();
 
             foreach (Player player in players)
             {
                 player.FullHealthRestore();
                 player.FullManaRestore();
             }
+
+            if (Game.currentWave >= Game.finalWave)
+            {
+                Console.ForegroundColor = ConsoleColor.Green;
+                ConsoleRenderer.ShowCombatMessage("You have beat the game! Congratulations!");
+                Console.ResetColor();
+                ShowEndScreen();
+                battleNotOver = false;
+                return;
+            }
+
+            enemies.Clear();
+            combatants.Clear();
+            combatants.AddRange(players);
+
+            var nextWave = Game.GetNextWave();
+            enemies.AddRange(nextWave);
+            combatants.AddRange(nextWave);
+
+            currentRound = 1;
         }
         private void CombatLoss()
         {
             battleNotOver = false;
+            Console.ForegroundColor = ConsoleColor.Red;
             ConsoleRenderer.ShowCombatMessage("Your party has been wiped out...");
+            Console.ResetColor();
+
+            ShowEndScreen();
         }
 
         public void ExecuteAction(BattleAction action)
@@ -113,6 +142,13 @@ namespace JRPG.Systems
                     break;
             }
             ConsoleRenderer.ShowActionResult(action, action.ResultValue);
+        }
+
+        public void ShowEndScreen()
+        {
+            Console.WriteLine("\n\nPress any key to exit");
+            Console.ReadKey(true);
+            Environment.Exit(0);
         }
     }
 }
