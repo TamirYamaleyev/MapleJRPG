@@ -12,6 +12,7 @@ namespace JRPG
     internal class Game
     {
         private CombatManager combatManager;
+        private AudioManager audioManager;
 
         public static int currentWave = 1;
         public static int finalWave = 4;
@@ -45,6 +46,9 @@ namespace JRPG
 
         public void Run()
         {
+            audioManager = new AudioManager();
+            audioManager.PlayBGM("HenesysBGM.mp3");
+
             Console.WriteLine("=== Welcome to MapleJRPG ===");
             Console.WriteLine("\n\n\nPress any key to continue");
             Console.ReadKey();
@@ -58,7 +62,7 @@ namespace JRPG
             Player magician = new Magician("Magician");
             Player thief = new Thief("Rogue");
 
-            combatManager = new CombatManager();
+            combatManager = new CombatManager(audioManager);
 
             combatManager.InitializeCombatants(new Player[] { warrior, bowman, magician, thief }, firstWaveEnemies);
             combatManager.BeginCombat();

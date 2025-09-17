@@ -8,12 +8,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="choir.mp3" />
+    <None Remove="BGM.mp3" />
+    <None Remove="HenesysBGM.mp3" />
     <None Remove="sound.wav" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="choir.mp3">
+    <Content Include="HenesysBGM.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

@@ -14,12 +14,19 @@ namespace JRPG.Systems
 {
     internal class CombatManager
     {
+        private readonly AudioManager audioManager;
+
         public static List<Player> players = new List<Player>();
         public static List<Enemy> enemies = new List<Enemy>();
         private List<IDamageable> combatants = new List<IDamageable>();
 
         public bool battleNotOver = false;
         int currentRound = Round.Instance.CurrentRound;
+
+        public CombatManager(AudioManager audioManager)
+        {
+            this.audioManager = audioManager;
+        }
 
         public void InitializeCombatants(Player[] playerArray, Enemy[] enemyArray)
         {
@@ -60,6 +67,7 @@ namespace JRPG.Systems
                     {
                         if (currentEnemy.PoisonDuration > 0) currentEnemy.TakeDamage(currentEnemy.PoisonDuration);
                         if (currentEnemy.StunDuration > 0) continue;
+
                         BattleAction enemyAction = EnemyAI.AttackRandomPlayer(currentEnemy);
                         ExecuteAction(enemyAction);
                         ConsoleRenderer.ShowBattleStatus(players, enemies, currentRound);
@@ -148,6 +156,9 @@ namespace JRPG.Systems
 
         public void ShowEndScreen()
         {
+            audioManager.StopBGM();
+            audioManager.Dispose();
+
             Console.WriteLine("\n\nPress any key to exit");
             Console.ReadKey(true);
             Environment.Exit(0);
